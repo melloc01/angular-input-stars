@@ -1,0 +1,27 @@
+/* <star-list></star-list> directive */
+.star-list {
+	
+	padding-left: 0;
+	margin-left: -5px;
+	list-style: none;
+
+}
+
+.star-list > li {
+		
+	font-size: 17px;
+
+	display: inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+
+	cursor: pointer;	
+
+}
+
+.star-list > li .fa-star {
+
+		color: #FDE35E;
+		text-shadow: black 0 0 1px, 0 0 1px ;	
+
+}
