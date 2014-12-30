@@ -1,10 +1,10 @@
 ## Welcome
 
-angular-input-stars is a directive made for rating inputs.
+With this directive you can build rating inputs easily. 
 
 Look!  A [demo](http://lab.rafamello.com/angular-input-stars)!
 
-## Instalation via bower
+## Installation via bower
 
 ```bash
 	bower install angular-input-stars
@@ -16,10 +16,15 @@ Look!  A [demo](http://lab.rafamello.com/angular-input-stars)!
 	<input-stars max="5" ng-model="YourCtrl.property"></input-stars>
 ```
 
-The .css file is optional and is a bootstrap for customizations.
+You can customize the full and empty icons
+```html
+	<input-stars max="5" full-icon="fa-circle" empty-icon="fa-circle-o" ng-model="YourCtrl.property"></input-stars>
+```
+
+The .css file is optional and it is a bootstrap for customizations.
 
 ##Dependencies
-This directive requires [jQuery](http://jquery.com) and [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
+This directive requires [jQuery](http://jquery.com) and uses [FontAwesome](http://fortawesome.github.io/Font-Awesome/) as fallback if you don't specify any icon.
 
 ## License
 

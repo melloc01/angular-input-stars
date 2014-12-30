@@ -19,7 +19,7 @@
 
 }
 
-.star-list > li .fa-star {
+.star-list > li .active {
 
 		color: #FDE35E;
 		text-shadow: black 0 0 1px, 0 0 1px ;	

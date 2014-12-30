@@ -1,4 +1,4 @@
-angular.module('your-module')
+angular.module('app')
 
 .directive('inputStars', function () {
 
@@ -8,9 +8,9 @@ angular.module('your-module')
         replace: true,
         template:
         '<ul class="star-list">' +
-        	'<li ng-repeat="item in items track by $index">' +
-        		'<i class="fa fa-fw " ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
-        	'</li>' +
+            '<li ng-repeat="item in items track by $index">' +
+                '<i class="fa fa-fw " ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+            '</li>' +
         '</ul>',
         require: 'ngModel',
         scope:true,
@@ -24,6 +24,9 @@ angular.module('your-module')
     function link (scope, element, attrs, ngModelCtrl) {
 
         scope.items = new Array(+attrs.max);
+        
+        var emptyIcon = attrs.iconEmpty || 'fa-star-o';
+        var fullIcon = attrs.iconFull || 'fa-star';
 
         ngModelCtrl.$render = function () {
 
@@ -33,7 +36,7 @@ angular.module('your-module')
 
         scope.getClass = function(index) {
 
-            return index >= scope.last_value ? 'fa-star-o' : 'fa-star';
+            return index >= scope.last_value ? emptyIcon : fullIcon + ' active ';
 
         };
 
@@ -57,11 +60,13 @@ angular.module('your-module')
                 var star = $(item);
 
                 if (event.pageX > star.offset().left ) {
-                    star.addClass('fa-star');
-                    star.removeClass('fa-star-o');
+                    star.addClass(fullIcon);
+                    star.addClass('active');
+                    star.removeClass(emptyIcon);
                 } else {
-                    star.removeClass('fa-star');
-                    star.addClass('fa-star-o');
+                    star.removeClass(fullIcon);
+                    star.removeClass('active');
+                    star.addClass(emptyIcon);
 
                 }
             });
@@ -74,11 +79,13 @@ angular.module('your-module')
                 var star = $(item);
                 
                 if (scope.last_value > index){
-                    star.addClass('fa-star');
-                    star.removeClass('fa-star-o');
+                    star.addClass(fullIcon);
+                    star.addClass('active');
+                    star.removeClass(emptyIcon);
                 } else {
-                    star.removeClass('fa-star');
-                    star.addClass('fa-star-o');
+                    star.removeClass('active');
+                    star.removeClass(fullIcon);
+                    star.addClass(emptyIcon);
                 }
 
             });
