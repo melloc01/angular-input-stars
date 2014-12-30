@@ -1,6 +1,4 @@
-angular.module('app')
-
-.directive('inputStars', function () {
+angular.module('app').directive('inputStars', function () {
 
     var directive = {
 
@@ -44,6 +42,7 @@ angular.module('app')
         scope.setValue = function(index, e) {
 
             var star = angular.element(e.target);
+
             if (e.pageX < star.offset().left + star.outerWidth() / 2) {
                     scope.last_value = index + 1;
             } else {
@@ -54,42 +53,51 @@ angular.module('app')
         };
 
         //Filling stars on mouseover
-        $(element).mouseover(function(event) {
+        element.mouseover(function(event) {
+            
             var items = element.find('li i');
 
-            $.each(items, function(index, item) {
-                var star = $(item);
+            for (var index = 0 ; index < items.length ; index++) {
+
+                var star = angular.element(items[index]);
 
                 if (event.pageX > star.offset().left ) {
+
                     star.addClass(fullIcon);
                     star.addClass('active');
                     star.removeClass(emptyIcon);
+
                 } else {
+
                     star.removeClass(fullIcon);
                     star.removeClass('active');
                     star.addClass(emptyIcon);
-
+                
                 }
-            });
+            };
         })
         .mouseout(function(event) {
             var items = element.find('li i');
 
-            $.each(items, function(index, item) {
+            for (var index = 0 ; index < items.length ; index++) {
 
-                var star = $(item);
+                var star = angular.element(items[index]);
                 
                 if (scope.last_value > index){
+
                     star.addClass(fullIcon);
                     star.addClass('active');
                     star.removeClass(emptyIcon);
+                
                 } else {
+                
                     star.removeClass('active');
                     star.removeClass(fullIcon);
                     star.addClass(emptyIcon);
+                
                 }
+            }
 
-            });
         });        
     }
 
