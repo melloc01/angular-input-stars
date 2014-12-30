@@ -1,7 +1,7 @@
  {
     "name": "angular-input-stars-directive",
-    
-    "description": "AngularJS directive make rating inputs",
+    "version": "1.0",
+    "description": "AngularJS directive for rating inputs",
     
     "keywords": [
         "angularjs",
@@ -17,7 +17,6 @@
     
     "dependencies": {
         "angular": "1.3.x",
-        "leaflet": "0.7.x",
         "font-awesome": "~4.2.0"
     },
 

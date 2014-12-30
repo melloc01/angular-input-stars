@@ -4,6 +4,12 @@ angular-input-stars is a directive made for rating inputs.
 
 Look!  A [demo](http://lab.rafamello.com/angular-input-stars)!
 
+## Instalation via bower
+
+```bash
+	bower install angular-input-stars
+```
+
 ## Use
 
 ```html
