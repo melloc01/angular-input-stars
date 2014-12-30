@@ -41,59 +41,63 @@ angular.module('app').directive('inputStars', function () {
 
         scope.setValue = function(index, e) {
 
-            var star = angular.element(e.target);
+            var star = e.target;
 
-            if (e.pageX < star.offset().left + star.outerWidth() / 2) {
+            if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
                     scope.last_value = index + 1;
             } else {
                     scope.last_value = index + 1;
             }
+
             ngModelCtrl.$setViewValue(scope.last_value);
         
         };
 
         //Filling stars on mouseover
-        element.mouseover(function(event) {
+        element.bind('mouseover', function(event) {
             
-            var items = element.find('li i');
+            var items = element.find('li').find('i');
 
             for (var index = 0 ; index < items.length ; index++) {
 
-                var star = angular.element(items[index]);
+                var domNode = items[index];
+                var $star = angular.element(domNode);
 
-                if (event.pageX > star.offset().left ) {
+                if (event.pageX > domNode.getBoundingClientRect().left ) {
 
-                    star.addClass(fullIcon);
-                    star.addClass('active');
-                    star.removeClass(emptyIcon);
+                    $star.addClass(fullIcon);
+                    $star.addClass('active');
+                    $star.removeClass(emptyIcon);
 
                 } else {
 
-                    star.removeClass(fullIcon);
-                    star.removeClass('active');
-                    star.addClass(emptyIcon);
+                    $star.removeClass(fullIcon);
+                    $star.removeClass('active');
+                    $star.addClass(emptyIcon);
                 
                 }
+
             };
         })
-        .mouseout(function(event) {
-            var items = element.find('li i');
+        .bind('mouseout', function(event) {
+
+            var items = element.find('li').find('i');
 
             for (var index = 0 ; index < items.length ; index++) {
 
-                var star = angular.element(items[index]);
+                var $star = angular.element(items[index]);
                 
                 if (scope.last_value > index){
 
-                    star.addClass(fullIcon);
-                    star.addClass('active');
-                    star.removeClass(emptyIcon);
+                    $star.addClass(fullIcon);
+                    $star.addClass('active');
+                    $star.removeClass(emptyIcon);
                 
                 } else {
                 
-                    star.removeClass('active');
-                    star.removeClass(fullIcon);
-                    star.addClass(emptyIcon);
+                    $star.removeClass('active');
+                    $star.removeClass(fullIcon);
+                    $star.addClass(emptyIcon);
                 
                 }
             }
