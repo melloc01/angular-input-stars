@@ -9,7 +9,7 @@ angular.module('app')
         template:
         '<ul class="star-list">' +
             '<li ng-repeat="item in items track by $index">' +
-                '<i class="fa fa-fw " ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+                '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
         '</ul>',
         require: 'ngModel',
@@ -27,6 +27,7 @@ angular.module('app')
         
         var emptyIcon = attrs.iconEmpty || 'fa-star-o';
         var fullIcon = attrs.iconFull || 'fa-star';
+        var iconBase = attrs.iconBase || 'fa fa-fw';
 
         ngModelCtrl.$render = function () {
 
@@ -36,7 +37,7 @@ angular.module('app')
 
         scope.getClass = function(index) {
 
-            return index >= scope.last_value ? emptyIcon : fullIcon + ' active ';
+            return index >= scope.last_value ? iconBase + ' '+ emptyIcon : iconBase + ' ' +fullIcon + ' active ';
 
         };
 
