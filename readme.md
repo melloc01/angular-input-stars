@@ -25,7 +25,7 @@ You can customize the full, empty and base icon classes via attributes
 > The .css file is optional and it is a bootstrap for customizations.
 
 ##Dependencies
-This directive requires [jQuery](http://jquery.com) and uses [FontAwesome](http://fortawesome.github.io/Font-Awesome/) as fallback if you don't specify any icon class.
+This directive uses [FontAwesome](http://fortawesome.github.io/Font-Awesome/) as fallback if you don't specify any icon class.
 
 ## License
 
