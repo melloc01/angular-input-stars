@@ -22,6 +22,11 @@ You can customize the full, empty and base icon classes via attributes
 ```
 > Unlike icon-base, on icon-full and icon-empty you must specify only one class.
 
+You can customize the list class to whatever you want
+```html
+	<input-stars max="5" list-class="shiny-list" ng-model="YourCtrl.property"></input-stars>
+```
+
 > The .css file is optional and it is a bootstrap for customizations.
 
 ##Dependencies

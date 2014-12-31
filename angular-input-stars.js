@@ -5,7 +5,7 @@ angular.module('app').directive('inputStars', function () {
         restrict: 'EA',
         replace: true,
         template:
-        '<ul class="angular-input-stars">' +
+        '<ul ng-class="listClass">' +
             '<li ng-repeat="item in items track by $index">' +
                 '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
@@ -24,8 +24,9 @@ angular.module('app').directive('inputStars', function () {
         scope.items = new Array(+attrs.max);
         
         var emptyIcon = attrs.iconEmpty || 'fa-star-o';
-        var fullIcon = attrs.iconFull || 'fa-star';
-        var iconBase = attrs.iconBase || 'fa fa-fw';
+        var fullIcon  = attrs.iconFull || 'fa-star';
+        var iconBase  = attrs.iconBase || 'fa fa-fw';
+        scope.listClass = attrs.listClass || 'angular-input-stars';
 
         ngModelCtrl.$render = function () {
 
