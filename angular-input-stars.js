@@ -5,7 +5,7 @@ angular.module('app').directive('inputStars', function () {
         restrict: 'EA',
         replace: true,
         template:
-        '<ul class="star-list">' +
+        '<ul class="angular-input-stars">' +
             '<li ng-repeat="item in items track by $index">' +
                 '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
