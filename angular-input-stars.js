@@ -63,7 +63,7 @@ angular.module('app').directive('inputStars', function () {
                 var domNode = items[index];
                 var $star = angular.element(domNode);
 
-                if (event.pageX > domNode.getBoundingClientRect().left ) {
+                if (event.pageX + 5 > domNode.getBoundingClientRect().left ) {
 
                     $star.addClass(fullIcon);
                     $star.addClass('active');
