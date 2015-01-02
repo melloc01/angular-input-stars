@@ -2,7 +2,6 @@
     "name": "angular-input-stars-directive",
     "version": "1.2.6",
     "description": "AngularJS directive for rating inputs",
-    
     "keywords": [
         "angularjs",
         "directive",
@@ -10,16 +9,13 @@
         "stars",
         "rating"
     ],
-    
     "main": [
         "input-stars.js"
     ],
-    
     "dependencies": {
         "angular": "1.3.x",
         "font-awesome": "~4.2.0"
     },
-
     "ignore": [
         "readme.md"  
     ]
