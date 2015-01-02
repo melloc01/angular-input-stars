@@ -78,7 +78,7 @@ angular.module('app').directive('inputStars', function () {
                 
                 }
 
-            };
+            }
         })
         .bind('mouseout', function(event) {
 
