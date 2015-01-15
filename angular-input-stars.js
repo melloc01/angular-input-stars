@@ -6,8 +6,8 @@ angular.module('app').directive('inputStars', function () {
         replace: true,
         template:
         '<ul ng-class="listClass">' +
-            '<li ng-repeat="item in items track by $index">' +
-                '<i ng-mouseenter="paintStars($index)" ng-mouseleave="unpaintStars($index)" ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+            '<li ng-mouseenter="paintStars($index)" ng-mouseleave="unpaintStars($index)" ng-repeat="item in items track by $index">' +
+                '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
         '</ul>',
         require: 'ngModel',
@@ -54,7 +54,7 @@ angular.module('app').directive('inputStars', function () {
 
                 var $star = angular.element(items[index]);
 
-                if ($index >= index) {
+                if ( $index >= index ) {
 
                     $star.addClass(fullIcon);
                     $star.addClass('active');
