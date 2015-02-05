@@ -1,4 +1,6 @@
-angular.module('app').directive('inputStars', function () {
+angular.module('angular-input-stars',[])
+
+.directive('inputStars', function () {
 
     var directive = {
 
