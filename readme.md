@@ -10,6 +10,11 @@ Look!  A [demo](http://lab.rafamello.com/angular-input-stars)!
 	bower install angular-input-stars
 ```
 
+Inject it
+```javascript
+    angular.module('app', ['angular-input-stars'])
+```
+
 ## Use
 
 ```html
