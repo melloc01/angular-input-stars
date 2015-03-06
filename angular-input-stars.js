@@ -82,10 +82,6 @@ angular.module('angular-input-stars', [])
                 if (scope.readOnly) {
                     return;
                 }
-                if (scope.readOnly) {
-                    return;
-                }
-
                 var star = e.target;
 
                 if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
