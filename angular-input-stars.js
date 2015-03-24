@@ -12,9 +12,7 @@ angular.module('angular-input-stars', [])
             '</li>' +
             '</ul>',
             require: 'ngModel',
-            scope: {
-                readOnly: '=' //optional param to disable interaction
-            },
+            scope: true,
 
             link: link
 
@@ -24,13 +22,13 @@ angular.module('angular-input-stars', [])
 
         function link(scope, element, attrs, ngModelCtrl) {
 
-
             scope.items = new Array(+attrs.max);
 
             var emptyIcon = attrs.iconEmpty || 'fa-star-o';
             var fullIcon = attrs.iconFull || 'fa-star';
             var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
+            scope.readonly  = element.hasOwnProperty('readonly') === undefined ?  false : true;
 
             ngModelCtrl.$render = function () {
 
@@ -51,8 +49,9 @@ angular.module('angular-input-stars', [])
             };
 
             scope.paintStars = function ($index) {
+
                 //ignore painting, if readonly
-                if (scope.readOnly) {
+                if (scope.readonly) {
                     return;
                 }
                 var items = element.find('li').find('i');
@@ -75,11 +74,13 @@ angular.module('angular-input-stars', [])
 
                     }
                 }
+
             };
 
             scope.setValue = function (index, e) {
+
                 //ignore painting
-                if (scope.readOnly) {
+                if (scope.readonly) {
                     return;
                 }
                 var star = e.target;
