@@ -21,15 +21,22 @@ Inject it
 	<input-stars max="5" ng-model="YourCtrl.property"></input-stars>
 ```
 
-You can customize the full, empty and base icon classes via attributes
+You can customize the **full**, **empty** and **base** icon classes via attributes
 ```html
 	<input-stars max="5" icon-full="fa-circle" icon-base="fa fa-fw" icon-empty="fa-circle-o" ng-model="YourCtrl.property"></input-stars>
 ```
-> Unlike icon-base, on icon-full and icon-empty you must specify only one class.
+> Unlike icon-base, on icon-full and icon-empty you must specify only one class, but that is all you need : ]
 
-You can customize the list class to whatever you want
+You can customize the **list class** to whatever you want
 ```html
 	<input-stars max="5" list-class="shiny-list" ng-model="YourCtrl.property"></input-stars>
+```
+
+You can make it readonly thanks to [@anjorinjnr](https://github.com/anjorinjnr)
+```html
+	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly ></input-stars>
+	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="true" ></input-stars>
+	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="readonly" ></input-stars>
 ```
 
 > The .css file is optional and it is a bootstrap for customizations.
