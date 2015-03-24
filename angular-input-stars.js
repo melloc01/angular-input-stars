@@ -28,7 +28,7 @@ angular.module('angular-input-stars', [])
             var fullIcon = attrs.iconFull || 'fa-star';
             var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
-            scope.readonly  = element.hasOwnProperty('readonly') === undefined ?  false : true;
+            scope.readonly  = ! (attrs.readonly === undefined);
 
             ngModelCtrl.$render = function () {
 
