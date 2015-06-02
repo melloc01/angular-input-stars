@@ -61,10 +61,10 @@ angular.module('angular-input-stars', [])
                     var $star = angular.element(items[index]);
 
                     if ($index >= index) {
-
+                        
+                        $star.removeClass(emptyIcon);
                         $star.addClass(fullIcon);
                         $star.addClass('active');
-                        $star.removeClass(emptyIcon);
 
                     } else {
 
