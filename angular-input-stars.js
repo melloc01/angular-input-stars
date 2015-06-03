@@ -32,7 +32,7 @@ angular.module('angular-input-stars', [])
 
             ngModelCtrl.$render = function () {
 
-                scope.last_value = ngModelCtrl.$viewValue;
+                scope.last_value = ngModelCtrl.$viewValue || 0;
 
             };
 
