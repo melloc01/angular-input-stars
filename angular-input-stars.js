@@ -7,7 +7,7 @@ angular.module('angular-input-stars', [])
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
-            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index)" ng-mouseleave="unpaintStars($index)" ng-repeat="item in items track by $index">' +
+            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
             '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
             '</ul>',
@@ -25,6 +25,7 @@ angular.module('angular-input-stars', [])
             scope.items = new Array(+attrs.max);
 
             var emptyIcon = attrs.iconEmpty || 'fa-star-o';
+            var iconHover = attrs.iconHover || 'angular-input-stars-hover';
             var fullIcon = attrs.iconFull || 'fa-star';
             var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
@@ -42,13 +43,13 @@ angular.module('angular-input-stars', [])
 
             };
 
-            scope.unpaintStars = function () {
+            scope.unpaintStars = function ($index, hover) {
 
-                scope.paintStars(scope.last_value - 1);
+                scope.paintStars(scope.last_value - 1, hover);
 
             };
 
-            scope.paintStars = function ($index) {
+            scope.paintStars = function ($index, hover) {
 
                 //ignore painting, if readonly
                 if (scope.readonly) {
@@ -65,15 +66,19 @@ angular.module('angular-input-stars', [])
                         $star.removeClass(emptyIcon);
                         $star.addClass(fullIcon);
                         $star.addClass('active');
+                        $star.addClass(iconHover);
 
                     } else {
 
                         $star.removeClass(fullIcon);
                         $star.removeClass('active');
+                        $star.removeClass(iconHover);
                         $star.addClass(emptyIcon);
 
                     }
                 }
+
+                !hover && items.removeClass(iconHover);
 
             };
 
