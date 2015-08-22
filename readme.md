@@ -21,11 +21,11 @@ Inject it
 	<input-stars max="5" ng-model="YourCtrl.property"></input-stars>
 ```
 
-You can customize the **full**, **empty** and **base** icon classes via attributes
+You can customize the **base**, **empty**, **hover**, and **full** and  icon classes via attributes
 ```html
-	<input-stars max="5" icon-full="fa-circle" icon-base="fa fa-fw" icon-empty="fa-circle-o" ng-model="YourCtrl.property"></input-stars>
+	<input-stars max="5" icon-base="fa fa-fw" icon-empty="fa-circle-o" icon-hover="hover" icon-full="fa-circle" ng-model="YourCtrl.property"></input-stars>
 ```
-> Unlike icon-base, on icon-full and icon-empty you must specify only one class, but that is all you need : ]
+> Unlike icon-base, on icon-full, icon-hover and icon-empty you must specify only one class, but that is all you need : ]
 
 You can customize the **list class** to whatever you want
 ```html

@@ -26,3 +26,7 @@
 		text-shadow: black 0 0 1px, 0 0 1px ;	
 
 }
+
+.angular-input-stars > li .active.angular-input-stars-hover {
+	text-shadow: black 0 0 3px;
+}
