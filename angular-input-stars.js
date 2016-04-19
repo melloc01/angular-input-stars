@@ -97,7 +97,8 @@ angular.module('angular-input-stars', [])
                 }
 
                 ngModelCtrl.$setViewValue(scope.last_value);
-
+                ///to trigger ng-click when this happens
+                element.bind('click',function(){});
             };
 
         }
