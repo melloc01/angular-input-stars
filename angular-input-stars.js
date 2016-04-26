@@ -12,7 +12,9 @@ angular.module('angular-input-stars', [])
             '</li>' +
             '</ul>',
             require: 'ngModel',
-            scope: true,
+            scope: {
+                onStarChange : '&'
+            },
 
             link: link
 
@@ -22,6 +24,8 @@ angular.module('angular-input-stars', [])
 
         function link(scope, element, attrs, ngModelCtrl) {
 
+            console.log(attrs);
+
             scope.items = new Array(+attrs.max);
 
             var emptyIcon = attrs.iconEmpty || 'fa-star-o';
@@ -30,6 +34,8 @@ angular.module('angular-input-stars', [])
             var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
             scope.readonly  = ! (attrs.readonly === undefined);
+            // var onStarChange = attrs.onStarChange || null;
+            // console.log(onStarChange);
 
             ngModelCtrl.$render = function () {
 
@@ -62,7 +68,7 @@ angular.module('angular-input-stars', [])
                     var $star = angular.element(items[index]);
 
                     if ($index >= index) {
-                        
+
                         $star.removeClass(emptyIcon);
                         $star.addClass(fullIcon);
                         $star.addClass('active');
@@ -97,6 +103,8 @@ angular.module('angular-input-stars', [])
                 }
 
                 ngModelCtrl.$setViewValue(scope.last_value);
+                //Call change event callback
+                scope.onStarChange();
 
             };
 
