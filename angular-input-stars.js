@@ -24,18 +24,14 @@ angular.module('angular-input-stars', [])
 
         function link(scope, element, attrs, ngModelCtrl) {
 
-            console.log(attrs);
 
             scope.items = new Array(+attrs.max);
-
             var emptyIcon = attrs.iconEmpty || 'fa-star-o';
             var iconHover = attrs.iconHover || 'angular-input-stars-hover';
             var fullIcon = attrs.iconFull || 'fa-star';
             var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
             scope.readonly  = ! (attrs.readonly === undefined);
-            // var onStarChange = attrs.onStarChange || null;
-            // console.log(onStarChange);
 
             ngModelCtrl.$render = function () {
 
