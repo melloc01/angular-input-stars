@@ -7,12 +7,19 @@ angular.module('angular-input-stars', [])
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
+
+            '<li ng-show="allowClear" ng-touch="paintStars(-1)"  ng-mouseenter="paintStars(-1, true)" ng-mouseleave="unpaintStars(last_value, false)" >' +
+            '<span  ng-class="getClass(-1)" ng-click="setValue(0, $event)"></span>' +
+            '</li>' +
+
             '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
             '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
             '</ul>',
             require: 'ngModel',
-            scope: true,
+            scope:{
+                ngModel: '='
+            },
 
             link: link
 
@@ -28,6 +35,11 @@ angular.module('angular-input-stars', [])
             var iconHover = attrs.iconHover || 'angular-input-stars-hover';
             var fullIcon = attrs.iconFull || 'fa-star';
             var iconBase = attrs.iconBase || 'fa fa-fw';
+
+            var iconClear = attrs.iconClear || 'fa-times-circle-o';
+
+            scope.allowClear  = attrs.allowClear && attrs.allowClear!= "false";
+
             scope.listClass = attrs.listClass || 'angular-input-stars';
             scope.readonly  = ! (attrs.readonly === undefined);
 
@@ -38,9 +50,10 @@ angular.module('angular-input-stars', [])
             };
 
             scope.getClass = function (index) {
-
-                return index >= scope.last_value ? iconBase + ' ' + emptyIcon : iconBase + ' ' + fullIcon + ' active ';
-
+                if(index < 0)
+                    return iconClear;
+                else
+                    return index >= scope.last_value ? iconBase + ' ' + emptyIcon : iconBase + ' ' + fullIcon + ' active ';
             };
 
             scope.unpaintStars = function ($index, hover) {
@@ -57,12 +70,14 @@ angular.module('angular-input-stars', [])
                 }
                 var items = element.find('li').find('i');
 
+
+
                 for (var index = 0; index < items.length; index++) {
 
                     var $star = angular.element(items[index]);
 
                     if ($index >= index) {
-                        
+
                         $star.removeClass(emptyIcon);
                         $star.addClass(fullIcon);
                         $star.addClass('active');
@@ -88,15 +103,22 @@ angular.module('angular-input-stars', [])
                 if (scope.readonly) {
                     return;
                 }
-                var star = e.target;
 
-                if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
-                    scope.last_value = index + 1;
-                } else {
-                    scope.last_value = index + 1;
+                if(index<= 0)
+                    scope.last_value = 0;
+                else {
+                    var star = e.target;
+
+                    if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
+                        scope.last_value = index + 1;
+                    } else {
+                        scope.last_value = index + 1;
+                    }
                 }
 
                 ngModelCtrl.$setViewValue(scope.last_value);
+                element.bind('click',function(){});
+
 
             };
 
