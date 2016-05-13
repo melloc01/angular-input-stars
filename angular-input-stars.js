@@ -1,6 +1,6 @@
 angular.module('angular-input-stars', [])
 
-    .directive('inputStars', function () {
+    .directive('inputStars', ['$rootScope', function ($rootScope) {
 
         var directive = {
 
@@ -97,9 +97,16 @@ angular.module('angular-input-stars', [])
                 }
 
                 ngModelCtrl.$setViewValue(scope.last_value);
+                
+                //Execute custom trigger function if there is one
+                if(attrs.onStarClick){
+                    $rootScope.$apply(function() {
+						$rootScope.$eval($attrs.onStarClick);
+					});
+                }
 
             };
 
         }
 
-    });
+    }]);
