@@ -1,6 +1,6 @@
 angular.module('angular-input-stars', [])
 
-    .directive('inputStars', ['$rootScope', function ($rootScope) {
+    .directive('inputStars', [function () {
 
         var directive = {
 
@@ -100,7 +100,7 @@ angular.module('angular-input-stars', [])
                 
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
-			$rootScope.$eval($attrs.onStarClick);
+			$scope.$eval(attrs.onStarClick);
                 }
 
             };
