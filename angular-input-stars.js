@@ -100,7 +100,11 @@ angular.module('angular-input-stars', [])
                 
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
-			$rootScope.$eval(attrs.onStarClick);
+                	if(attrs.scope="root"){
+				$rootScope.$eval(attrs.onStarClick);
+                	}else{
+                		$scope.$eval(attrs.onStarClick);
+                	}
                 }
 
             };
