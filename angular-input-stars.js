@@ -10,7 +10,7 @@ angular.module('angular-input-stars', [])
 				var deferred = $q.defer();
 
 				//Fetch icon list from font-awesome repo
-				$http.get('https://raw.githubusercontent.com/FortAwesome/Font-Awesome/gh-pages/icons.yml').then(function (response) {
+				$http.get('https://raw.githubusercontent.com/FortAwesome/Font-Awesome/gh-pages/icons.yml').then(function(response) {
 						var parsedData = jsyaml.load(response.data);
 
 						var parsedIconData = {
@@ -34,8 +34,9 @@ angular.module('angular-input-stars', [])
 						deferred.resolve(parsedIconData);
 					},
 					//Error Callback Function
-					function(data){
-						var error = response.data || "Request failed";
+					function(response){
+						var error = "Could not fetch FontAwesome Github Repo";
+						if(!response) error = response.data || response;
 						deferred.reject(error);
 					});
 
@@ -104,11 +105,12 @@ angular.module('angular-input-stars', [])
 				FontAwesomeIcons.get().then(function(result) {
 					deferred.resolve(result);
 				}, function (err) {
-					deferred.reject(new Error("toShapeIcon Error: " + err.message || err));
+					deferred.reject(new Error("toShapeIcon Error: " + err));
 				});
 
 				return deferred.promise;
-			})().then(function (faData) {
+			})().then(
+				function (faData) {
 
 					//Initialize directive with font-awesome class names
 					(function initDirective(){
@@ -209,6 +211,9 @@ angular.module('angular-input-stars', [])
 
 					};
 
+				},
+				function (err){
+					console.error("angular-input-stars.js | " + err.message || err);
 				});
 		}
     }]);
