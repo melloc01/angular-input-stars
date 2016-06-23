@@ -1,0 +1,23 @@
+{
+    "name": "angular-input-stars",
+    "version": "1.5.5",
+    "description": "AngularJS directive for rating inputs",
+	"private": false,
+    "homepage": "https://github.com/rcbytes/angular-input-stars",
+    "keywords": [
+        "angularjs",
+        "directive",
+        "input",
+        "stars",
+        "rating"
+    ],
+    "author": {
+     "name": "Rafael Mello Campanari <lab.rafamello@gmail.com> (http://rafamello.com)"
+    },
+    "license": "MIT",
+    "main": "angular-input-stars.js",
+    "dependencies": {
+        "angular": "1.4.x",
+        "font-awesome": "~4.2.0"
+    }
+}
