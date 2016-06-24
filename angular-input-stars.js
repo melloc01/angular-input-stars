@@ -38,9 +38,8 @@ angular.module('angular-input-stars', [])
             };
 
             scope.getClass = function (index) {
-
-                return index >= scope.last_value ? iconBase + ' ' + emptyIcon : iconBase + ' ' + fullIcon + ' active ';
-
+                var icon = index >= scope.last_value ? iconBase + ' ' + emptyIcon : iconBase + ' ' + fullIcon + ' active ';
+                return scope.readonly ? icon + ' readonly' : icon;
             };
 
             scope.unpaintStars = function ($index, hover) {
