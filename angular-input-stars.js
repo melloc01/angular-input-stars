@@ -1,5 +1,12 @@
 'use strict';
 
+var __indexOf = [].indexOf || function(item) {
+		for (var i = 0, l = this.length; i < l; i++) {
+			if (i in this && this[i] === item) return i;
+		}
+		return -1;
+	};
+
 angular.module('angular-input-stars', [])
 	.service('FontAwesomeIcons', ['$http', '$q',
 		function($http, $q){
@@ -43,13 +50,15 @@ angular.module('angular-input-stars', [])
 			}
 
 		}
-	]).filter('toFaIcon', ['FontAwesomeIcons',  '$timeout', function(FontAwesomeIcons, $timeout) {
+	]).filter('toFaIcon', ['FontAwesomeIcons',  '$timeout',
+		function(FontAwesomeIcons, $timeout) {
 
 		var getRatingShape = function (fieldType, iconData) {
 			var iconObj = {
 				full: "",
 				empty: ""
 			};
+			console.log(fieldType);
 
 			if (__indexOf.call(iconData.iconList, fieldType) >= 0) {
 
@@ -76,139 +85,143 @@ angular.module('angular-input-stars', [])
 			else return shapeData.full;
 		}
 
-	}]).directive('inputStars', ['$rootScope', '$filter', 'FontAwesomeIcons', '$q', function ($rootScope, $filter, FontAwesomeIcons, $q) {
+	}
+	]).directive('inputStars', ['$rootScope', '$filter', 'FontAwesomeIcons', '$q',
+		function ($rootScope, $filter, FontAwesomeIcons, $q) {
 
-        var directive = {
+			console.log('hello');
+			var directive = {
 
-            restrict: 'EA',
-            replace: true,
-            template: '<ul ng-class="listClass">' +
-            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
-            '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
-            '</li>' +
-            '</ul>',
-            require: 'ngModel',
-            scope: true,
+				restrict: 'EA',
+				replace: true,
+				template: '<ul ng-class="listClass">' +
+				'<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
+				'<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+				'</li>' +
+				'</ul>',
+				require: 'ngModel',
+				scope: true,
 
-            link: link
+				link: link
 
-        };
+			};
 
-        return directive;
+			return directive;
 
-        function link(scope, element, attrs, ngModelCtrl) {
-			var obj = {};
+			function link(scope, element, attrs, ngModelCtrl) {
+				console.log(attrs);
+				var obj = {};
 
-			(function initDirective() {
-				var deferred = $q.defer();
-				FontAwesomeIcons.get().then(function(result) {
-					deferred.resolve(result);
-				}, function (err) {
-					deferred.reject(new Error("toShapeIcon Error: " + err.message || err));
-				});
-
-				return deferred.promise;
-			})().then(function (faData) {
-
-					//Initialize directive with font-awesome class names
-					(function initDirective(){
-						scope.items = new Array(+attrs.max);
-
-						obj.emptyIcon = $filter('toFaIcon')(attrs.iconEmpty, true, faData) || attrs.iconEmpty || 'fa-stars-o';
-						obj.iconHover = attrs.iconHover || 'angular-input-stars-hover';
-						obj.fullIcon = $filter('toFaIcon')(attrs.iconFull, false, faData) || attrs.iconEmpty || 'fa-stars';
-						obj.iconBase = attrs.iconBase || 'fa fa-fw';
-
-						scope.listClass = attrs.listClass || 'angular-input-stars';
-						scope.readonly = !(attrs.readonly === undefined);
-					})();
-
-					//Update directive when attributes are changed
-					attrs.$observe('max', function(max){
-						scope.items = new Array(+max);
-					});
-					attrs.$observe('iconEmpty', function(newEmptyIcon){
-						obj.emptyIcon = $filter('toFaIcon')(newEmptyIcon, true, faData) || newEmptyIcon || 'fa-stars-o';
-					});
-					attrs.$observe('iconFull', function(newFullIcon){
-						obj.fullIcon = $filter('toFaIcon')(newFullIcon, false, faData) || newFullIcon || 'fa-stars';
+				(function initDirective() {
+					var deferred = $q.defer();
+					FontAwesomeIcons.get().then(function(result) {
+						deferred.resolve(result);
+					}, function (err) {
+						deferred.reject(new Error("toShapeIcon Error: " + err.message || err));
 					});
 
+					return deferred.promise;
+				})().then(function (faData) {
 
-					ngModelCtrl.$render = function () {
+						//Initialize directive with font-awesome class names
+						(function initDirective(){
+							scope.items = new Array(+attrs.max);
 
-						scope.last_value = ngModelCtrl.$viewValue || 0;
+							obj.emptyIcon = $filter('toFaIcon')(attrs.iconEmpty, true, faData) || attrs.iconEmpty || 'fa-stars-o';
+							obj.iconHover = attrs.iconHover || 'angular-input-stars-hover';
+							obj.fullIcon = $filter('toFaIcon')(attrs.iconFull, false, faData) || attrs.iconEmpty || 'fa-stars';
+							obj.iconBase = attrs.iconBase || 'fa fa-fw';
 
-					};
+							scope.listClass = attrs.listClass || 'angular-input-stars';
+							scope.readonly = !(attrs.readonly === undefined);
+						})();
 
-					scope.getClass = function (index) {
+						//Update directive when attributes are changed
+						attrs.$observe('max', function(max){
+							scope.items = new Array(+max);
+						});
+						attrs.$observe('iconEmpty', function(newEmptyIcon){
+							obj.emptyIcon = $filter('toFaIcon')(newEmptyIcon, true, faData) || newEmptyIcon || 'fa-stars-o';
+						});
+						attrs.$observe('iconFull', function(newFullIcon){
+							obj.fullIcon = $filter('toFaIcon')(newFullIcon, false, faData) || newFullIcon || 'fa-stars';
+						});
 
-						return index >= scope.last_value ? obj.iconBase + ' ' + obj.emptyIcon : obj.iconBase + ' ' + obj.fullIcon + ' active ';
 
-					};
+						ngModelCtrl.$render = function () {
 
-					scope.unpaintStars = function ($index, hover) {
+							scope.last_value = ngModelCtrl.$viewValue || 0;
 
-						scope.paintStars(scope.last_value - 1, hover);
+						};
 
-					};
+						scope.getClass = function (index) {
 
-					scope.paintStars = function ($index, hover) {
+							return index >= scope.last_value ? obj.iconBase + ' ' + obj.emptyIcon : obj.iconBase + ' ' + obj.fullIcon + ' active ';
 
-						//ignore painting, if readonly
-						if (scope.readonly) {
-							return;
-						}
-						var items = element.find('li').find('i');
+						};
 
-						for (var index = 0; index < items.length; index++) {
+						scope.unpaintStars = function ($index, hover) {
 
-							var $star = angular.element(items[index]);
+							scope.paintStars(scope.last_value - 1, hover);
 
-							if ($index >= index) {
+						};
 
-								$star.removeClass(obj.emptyIcon);
-								$star.addClass(obj.fullIcon);
-								$star.addClass('active');
-								$star.addClass(obj.iconHover);
+						scope.paintStars = function ($index, hover) {
 
-							} else {
-
-								$star.removeClass(obj.fullIcon);
-								$star.removeClass('active');
-								$star.removeClass(obj.iconHover);
-								$star.addClass(obj.emptyIcon);
-
+							//ignore painting, if readonly
+							if (scope.readonly) {
+								return;
 							}
-						}
+							var items = element.find('li').find('i');
 
-						!hover && items.removeClass(obj.iconHover);
+							for (var index = 0; index < items.length; index++) {
 
-					};
+								var $star = angular.element(items[index]);
 
-					scope.setValue = function (index, e) {
+								if ($index >= index) {
 
-						//ignore painting
-						if (scope.readonly) {
-							return;
-						}
-						var star = e.target;
+									$star.removeClass(obj.emptyIcon);
+									$star.addClass(obj.fullIcon);
+									$star.addClass('active');
+									$star.addClass(obj.iconHover);
 
-						if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
-							scope.last_value = index + 1;
-						} else {
-							scope.last_value = index + 1;
-						}
+								} else {
 
-						ngModelCtrl.$setViewValue(scope.last_value);
+									$star.removeClass(obj.fullIcon);
+									$star.removeClass('active');
+									$star.removeClass(obj.iconHover);
+									$star.addClass(obj.emptyIcon);
 
-						//Execute custom trigger function if there is one
-						if (attrs.onShapeClick) {
-							scope.$eval(attrs.onStarClick);
-						}
+								}
+							}
 
-					};
+							!hover && items.removeClass(obj.iconHover);
 
-				});
-		}
+						};
+
+						scope.setValue = function (index, e) {
+
+							//ignore painting
+							if (scope.readonly) {
+								return;
+							}
+							var star = e.target;
+
+							if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
+								scope.last_value = index + 1;
+							} else {
+								scope.last_value = index + 1;
+							}
+
+							ngModelCtrl.$setViewValue(scope.last_value);
+
+							//Execute custom trigger function if there is one
+							if (attrs.onShapeClick) {
+								scope.$eval(attrs.onStarClick);
+							}
+
+						};
+
+					});
+			}
     }]);
