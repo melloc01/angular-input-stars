@@ -18,6 +18,7 @@
         "angular-input-stars.js"
     ],
     "dependencies": {
+        "js-yaml": "~3.6.1",
         "angular": "1.4.x",
         "font-awesome": "~4.4.0"
     },
