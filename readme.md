@@ -43,6 +43,10 @@ You can make it readonly thanks to [@anjorinjnr](https://github.com/anjorinjnr)
 	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="true" ></input-stars>
 	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="readonly" ></input-stars>
 ```
+Use ng-attr to conditionally set the **readonly** attribute
+```html
+	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" ng-attr-readonly="{{YourCtrl.isDisabled ? 'true' : undefined}}" ></input-stars>
+```
 
 > The .css file is optional and it is a bootstrap for customizations.
 
