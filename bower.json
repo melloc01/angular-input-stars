@@ -18,7 +18,7 @@
         "angular-input-stars.js"
     ],
     "dependencies": {
-        "angular": "1.4.x"
+        "angular": "1.4.x - 1.9.x"
     },
     "ignore": [
         "readme.md"  
