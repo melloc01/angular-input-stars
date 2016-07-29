@@ -27,7 +27,7 @@ You can customize the **base**, **empty**, **hover**, and **full** and  icon cla
 ```
 > Unlike icon-base, on icon-full, icon-hover and icon-empty you must specify only one class, but that is all you need : ]
 
-You can also customize or initalize the directive attributes using the `ng-attr-{attr}` directive thanks to [timkishkin](https://github.com/timkishkin) for pointing a better clarification
+You can also customize or initalize the directive attributes using the `ng-attr-{attr}` directive thanks to [timkishkin](https://github.com/timkishkin) for pointing the need of a better clarification
 
 ```html
 	<input-stars 
