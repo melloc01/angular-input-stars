@@ -1,9 +1,6 @@
 angular.module('angular-input-stars', [])
-
     .directive('inputStars', [function () {
-
         var directive = {
-
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
@@ -13,97 +10,105 @@ angular.module('angular-input-stars', [])
             '</ul>',
             require: 'ngModel',
             scope: true,
-
             link: link
-
         };
 
         return directive;
 
         function link(scope, element, attrs, ngModelCtrl) {
+            var computed = {
+                get readonly() {
+                    return attrs.readonly != 'false' && (attrs.readonly || attrs.readonly === '');
+                },
+                get fullIcon() {
+                    return attrs.iconFull || 'fa-star';
+                },
+                get emptyIcon() {
+                    return attrs.iconEmpty || 'fa-star-o';
+                },
+                get iconBase() {
+                    return attrs.iconBase || 'fa fa-fw';
+                },
+                get iconHover() {
+                    attrs.iconHover || 'angular-input-stars-hover';
+                }
+            };
 
             scope.items = new Array(+attrs.max);
-
-            var emptyIcon = attrs.iconEmpty || 'fa-star-o';
-            var iconHover = attrs.iconHover || 'angular-input-stars-hover';
-            var fullIcon = attrs.iconFull || 'fa-star';
-            var iconBase = attrs.iconBase || 'fa fa-fw';
             scope.listClass = attrs.listClass || 'angular-input-stars';
-            scope.readonly  = ! (attrs.readonly === undefined);
 
             ngModelCtrl.$render = function () {
-
-                scope.last_value = ngModelCtrl.$viewValue || 0;
-
+                scope.lastValue = ngModelCtrl.$viewValue || 0;
             };
 
             scope.getClass = function (index) {
-                var icon = index >= scope.last_value ? iconBase + ' ' + emptyIcon : iconBase + ' ' + fullIcon + ' active ';
-                return scope.readonly ? icon + ' readonly' : icon;
+                var icon = index >= scope.lastValue ? computed.iconBase + ' ' + computed.emptyIcon : computed.iconBase + ' ' + computed.fullIcon + ' active ';
+                return computed.readonly ? icon + ' readonly' : icon;
             };
 
             scope.unpaintStars = function ($index, hover) {
-
-                scope.paintStars(scope.last_value - 1, hover);
-
+                scope.paintStars(scope.lastValue - 1, hover);
             };
 
             scope.paintStars = function ($index, hover) {
-
                 //ignore painting, if readonly
-                if (scope.readonly) {
+                if (computed.readonly) {
                     return;
                 }
+
                 var items = element.find('li').find('i');
 
                 for (var index = 0; index < items.length; index++) {
-
                     var $star = angular.element(items[index]);
 
                     if ($index >= index) {
-                        
-                        $star.removeClass(emptyIcon);
-                        $star.addClass(fullIcon);
+                        $star.removeClass(computed.emptyIcon);
+                        $star.addClass(computed.fullIcon);
                         $star.addClass('active');
-                        $star.addClass(iconHover);
-
+                        $star.addClass(computed.iconHover);
                     } else {
-
-                        $star.removeClass(fullIcon);
+                        $star.removeClass(computed.fullIcon);
                         $star.removeClass('active');
-                        $star.removeClass(iconHover);
-                        $star.addClass(emptyIcon);
+                        $star.removeClass(computed.iconHover);
+                        $star.addClass(computed.emptyIcon);
 
                     }
                 }
 
-                !hover && items.removeClass(iconHover);
-
+                if (! hover) {
+                    items.removeClass(computed.iconHover);
+                }
             };
 
             scope.setValue = function (index, e) {
-
                 //ignore painting
-                if (scope.readonly) {
+                if (computed.readonly) {
                     return;
                 }
-                var star = e.target;
+
+                var star = e.target,
+                    newValue;
 
                 if (e.pageX < star.getBoundingClientRect().left + star.offsetWidth / 2) {
-                    scope.last_value = index + 1;
+                    newValue = index + 1;
                 } else {
-                    scope.last_value = index + 1;
+                    newValue = index + 1;
                 }
 
-                ngModelCtrl.$setViewValue(scope.last_value);
+                // sets to 0 if the user clicks twice on the first "star"
+                // the user should be allowed to give a 0 score
+                if (newValue === scope.lastValue && newValue === 1) {
+                    newValue = 0;
+                }
+
+                scope.lastValue = newValue;
+
+                ngModelCtrl.$setViewValue(newValue);
                 
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
-			scope.$eval(attrs.onStarClick);
+                    scope.$eval(attrs.onStarClick);
                 }
-
             };
-
         }
-
     }]);

@@ -29,15 +29,30 @@
 
             <h3>Readonly</h3>
 
-            <input-stars readonly="true" ng-model="App.prop1" max="5"></input-stars> value: {{App.prop1}}
+            <div ng-init="enableReadonly = true">
+                <em>
+                    <input type="checkbox" ng-model="enableReadonly" > Toggle readonly
+                </em>
+                <pre>{{ enableReadonly }}</pre>
+            </div>
+
+            <input-stars 
+                ng-model="App.prop1" 
+                max="5" 
+                ng-attr-readonly="{{ enableReadonly || false }}" 
+                ng-attr-icon-empty="{{ enableReadonly ? 'fa-twitter' : 'fa-circle-o' }}"
+                ng-attr-icon-full="{{ enableReadonly ? 'fa-cog' : 'fa-twitter' }}"
+            ></input-stars> value: {{App.prop1}}
+
             <br>
-            <input-stars readonly="readonly" ng-model="App.prop2" max="5"></input-stars> value: {{App.prop2}}
+
+            <input-stars ng-model="App.prop2" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop2}}
             <br>
-            <input-stars readonly ng-model="App.prop3" max="5"></input-stars> value: {{App.prop3}}
+            <input-stars ng-model="App.prop3" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop3}}
             <br>
-            <input-stars readonly ng-model="App.prop4" max="5"></input-stars> value: {{App.prop4}}
+            <input-stars ng-model="App.prop4" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop4}}
             <br>
-            <input-stars readonly ng-model="App.prop5" max="5"></input-stars> value: {{App.prop5}}
+            <input-stars ng-model="App.prop5" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop5}}
 
 
         </div>

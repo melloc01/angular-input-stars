@@ -27,6 +27,9 @@ You can customize the **base**, **empty**, **hover**, and **full** and  icon cla
 ```
 > Unlike icon-base, on icon-full, icon-hover and icon-empty you must specify only one class, but that is all you need : ]
 
+You can also customize or initalize the directive attributs using the `ng-attr-{attr}` directive thanks to [timkishkin](https://github.com/timkishkin) for pointing a better clarification
+![customization options](http://imgur.com/K8ofVwQ)
+
 You can add a $rootScope function that will be called each time after a star is clicked by using the optional **onStarClick** attribute (thanks to [@whitef0x0](https://github.com/whitef0x0))
 ```html
 	<input-stars max="5" on-star-click="runMyFunction()" ng-model="YourCtrl.property"></input-stars>
