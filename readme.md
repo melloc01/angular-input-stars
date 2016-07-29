@@ -16,7 +16,7 @@ Inject it
 ```
 
 ## Use
-
+Simple usage
 ```html
 	<input-stars max="5" ng-model="YourCtrl.property"></input-stars>
 ```
