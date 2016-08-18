@@ -53,7 +53,7 @@ angular.module('angular-input-stars', [])
             };
 
             scope.paintStars = function ($index, hover) {
-                //ignore painting, if readonly
+                // ignore painting if readonly
                 if (computed.readonly) {
                     return;
                 }
@@ -83,7 +83,7 @@ angular.module('angular-input-stars', [])
             };
 
             scope.setValue = function (index, e) {
-                //ignore painting
+                // ignore setting value if readonly
                 if (computed.readonly) {
                     return;
                 }
