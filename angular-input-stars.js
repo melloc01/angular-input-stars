@@ -3,7 +3,7 @@ angular.module('angular-input-stars', [])
         var directive = {
             restrict: 'EA',
             replace: true,
-            template: '<ul ng-class="listClass">' + //ng-mouseenter isn't working tested in latest version of Chrome Safari and Firefox Dev Edtion. Changed for mouseover
+            template: '<ul ng-class="listClass">' +
             '<li ng-touch="paintStars($index)" ng-mouseover="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
             '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
