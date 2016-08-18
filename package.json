@@ -1,6 +1,6 @@
 {
     "name": "angular-input-stars",
-    "version": "1.7.1",
+    "version": "1.6.1",
     "description": "AngularJS directive for rating inputs",
 	"private": false,
     "homepage": "https://github.com/rcbytes/angular-input-stars",

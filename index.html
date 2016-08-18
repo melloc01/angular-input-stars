@@ -17,9 +17,9 @@
         <![endif]-->
         <div ng-app="app" ng-controller="AppCtrl as App">
 
-            <input-stars ng-model="App.prop1" on-star-click="clickHandler(App.prop1)" max="5"></input-stars> value: {{App.prop1}}
+            <input-stars ng-model="prop1" on-star-click="clickHandler(prop1)" max="5"></input-stars> value: {{prop1}}
             <br>
-            <input-stars ng-model="App.prop2" max="5"></input-stars> value: {{App.prop2}}
+            <input-stars ng-model="prop2" max="5"></input-stars> value: {{prop2}}
             <br>
             <input-stars ng-model="App.prop3" max="5"></input-stars> value: {{App.prop3}}
             <br>
@@ -37,16 +37,16 @@
             </div>
 
             <input-stars 
-                ng-model="App.prop1" 
+                ng-model="prop1" 
                 max="5" 
                 ng-attr-readonly="{{ enableReadonly || false }}" 
                 ng-attr-icon-empty="{{ enableReadonly ? 'fa-twitter' : 'fa-circle-o' }}"
                 ng-attr-icon-full="{{ enableReadonly ? 'fa-cog' : 'fa-twitter' }}"
-            ></input-stars> value: {{App.prop1}}
+            ></input-stars> value: {{prop1}}
 
             <br>
 
-            <input-stars ng-model="App.prop2" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop2}}
+            <input-stars ng-model="prop2" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{prop2}}
             <br>
             <input-stars ng-model="App.prop3" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop3}}
             <br>
@@ -78,8 +78,8 @@
 
                 var vm = this;
 
-                vm.prop1  = 1;
-                vm.prop2  = 2;
+                $scope.prop1  = 1;
+                $scope.prop2  = 2;
                 vm.prop3  = 3;
                 vm.prop4  = 4;
                 vm.prop5  = 5;

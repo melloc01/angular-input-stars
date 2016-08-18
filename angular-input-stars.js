@@ -9,7 +9,9 @@ angular.module('angular-input-stars', [])
             '</li>' +
             '</ul>',
             require: 'ngModel',
-            scope: true,
+            scope: {
+                ngModel: '='
+            },
             link: link
         };
 
@@ -103,12 +105,15 @@ angular.module('angular-input-stars', [])
 
                 scope.lastValue = newValue;
 
+
                 ngModelCtrl.$setViewValue(newValue);
-                
+                ngModelCtrl.$render();
+
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
                     scope.$eval(attrs.onStarClick);
                 }
+
             };
         }
     }]);
