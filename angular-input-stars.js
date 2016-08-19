@@ -30,7 +30,6 @@ angular.module('angular-input-stars', [])
                     return attrs.iconBase || 'fa fa-fw';
                 },
                 get iconHover() {
-                    //Missing return. Function was not returning anything
                     return attrs.iconHover || 'angular-input-stars-hover';
                 }
             };
