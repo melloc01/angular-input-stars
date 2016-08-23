@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Angular Input Stars</title>
+        <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="angular-input-stars.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <style>
+            .html.tag{
+                color: #cfc044;
+            }
+            .html.prop-name{
+                color: #e8fcff;
+            }
+            .html.prop-string{
+                color: #78cb48;
+            }
+	        pre {
+		        background-color: #404040;
+	        }
+        </style>
+    </head>
+    <body >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container-fluid" ng-app="app" ng-controller="AppCtrl as App">
+            <div class="row">
+                <!--Example 1-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example1" aria-expanded="false" aria-controls="example1"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 1</h3>
+                    <p>This is a default version. The star comes from FontAwesome and it works as a fallback.</p>
+                    <input-stars ng-model="prop1" on-star-click="clickHandler(prop1)" max="5"></input-stars>
+                    <span class="tag tag-info">value: {{prop1}}</span>
+                    <div class="collapse" id="example1">
+                        <div class="card card-block">
+	                        <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop1&quot;</span> <span class="html prop-name">on-star-click=</span><span class="html prop-string">&quot;clickHandler(prop1)&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;&gt;</span><span class="html tag">&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 2-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example2" aria-expanded="false" aria-controls="example2"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 2</h3>
+                    <p>You can change the icon when is empty with <code>icon-empty</code> and when is full with <code>icon-full</code></p>
+                    <input-stars icon-empty="fa-heart-o" icon-full="fa-heart" ng-model="prop2" max="5"></input-stars>
+                    <span class="tag tag-info">value: {{prop2}}</span>
+                    <div class="collapse" id="example2">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">icon-empty=</span><span class="html prop-string">&quot;fa-heart-o&quot;</span> <span class="html prop-name">icon-full=</span><span class="html prop-string">&quot;fa-heart&quot;</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop2&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;&gt;</span><span class="html tag">&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 3-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example3" aria-expanded="false" aria-controls="example3"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 3</h3>
+                    <p>You can bootstrap icons too</p>
+                    <input-stars icon-base="glyphicon" icon-empty="glyphicon-remove" icon-full="glyphicon-ok" ng-model="prop3" max="5"></input-stars>
+                    <span class="tag tag-info">value: {{prop3}}</span>
+                    <div class="collapse" id="example3">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">icon-base=</span><span class="html prop-string">&quot;glyphicon&quot;</span> <span class="html prop-name">icon-empty=</span><span class="html prop-string">&quot;glyphicon-remove&quot;</span> <span class="html prop-name">icon-full=</span><span class="html prop-string">&quot;glyphicon-ok&quot;</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop3&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 4-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example4" aria-expanded="false" aria-controls="example4"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 4</h3>
+                    <p>You can choose if you want to use different icons when the user sets a rating</p>
+                    <input-stars icon-empty="fa-heart-o" icon-full="fa-twitter" ng-model="prop3" max="5"></input-stars>
+                    <span class="tag tag-info">value: {{prop4}}</span>
+                    <div class="collapse" id="example4">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">icon-empty=</span><span class="html prop-string">&quot;fa-heart-o&quot;</span> <span class="html prop-name">icon-full=</span><span class="html prop-string">&quot;fa-twitter&quot;</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop3&quot;</span> <spna class="html prop-name">max=</spna><span class="html prop-string">&quot;5&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 5-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example5" aria-expanded="false" aria-controls="example5"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 5</h3>
+                    <p>Set the maximum rating with an scope variable</p>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label>Max. rating</label>
+                            <input type="number" ng-model="maxDynamic" class="form-control" min="0"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <input-stars ng-model="prop4" max="{{maxDynamic}}"></input-stars>
+                        <span class="tag tag-info">value: {{prop5}}</span>
+                    </div>
+                    <div class="collapse" id="example5">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop4&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;&lbrace;&lbrace;maxDynamic&rbrace;&rbrace;&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 6-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example6" aria-expanded="false" aria-controls="example6"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 6</h3>
+                    <p>You can use <a href="https://design.google.com/icons/">Material Icons</a> that uses ligature for its icons only with the attribute <code>ligature</code></p>
+                    <input-stars icon-base="material-icons" icon-empty="sentiment_dissatisfied" icon-full="sentiment_satisfied" ng-model="prop6" max="5" ligature></input-stars>
+                    <span class="tag tag-info">value: {{prop6}}</span>
+                    <div class="collapse" id="example6">
+                        <div class="card card-block">
+	                        <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">icon-base=</span><span class="html prop-string">&quot;material-icons&quot;</span> <spna class="html prop-name">icon-empty=</spna><span class="html prop-string">&quot;sentiment_dissatisfied&quot;</span> <span class="html prop-name">icon-full=</span><span class="html prop-string">&quot;sentiment_satisfied&quot;</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop5&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span> <span class="html prop-name">ligature</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 7-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element" ng-init="enableReadonly = true">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example7" aria-expanded="false" aria-controls="example7"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 7</h3>
+                    <p>You can make an input star readonly easily, just can simple add the <code>readonly</code> attribute</p>
+                    <input-stars
+                            ng-model="prop7"
+                            max="5"
+                            readonly
+                    ></input-stars>
+                    <span class="tag tag-info">value: {{prop7}}</span>
+                    <div class="collapse" id="example7">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop1&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span> <span class="html prop-name">readonly</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 8-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example8" aria-expanded="false" aria-controls="example8"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 8</h3>
+                    <p>You play with a variable to chance the icons when the input is readonly</p>
+                    <div ng-init="enableReadonly = true">
+                        <em>
+                            <input type="checkbox" ng-model="enableReadonly" > Toggle readonly
+                        </em>
+                        <span class="tag tag-info">{{ enableReadonly }}</span>
+                    </div>
+                    <input-stars
+                            ng-model="prop2"
+                            max="5"
+                            ng-attr-readonly="{{ enableReadonly || false }}"
+                            ng-attr-icon-empty="{{ enableReadonly ? 'fa-twitter' : 'fa-circle-o' }}"
+                            ng-attr-icon-full="{{ enableReadonly ? 'fa-cog' : 'fa-twitter' }}"
+                    ></input-stars>
+                    <span class="tag tag-info">value: {{prop2}}</span>
+                    <div class="collapse" id="example8">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop1&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span> <span class="html prop-name">ng-attr-readonly=</span><span class="html prop-string">&quot;&lbrace;&lbrace; enableReadonly || false &rbrace;&rbrace;&quot;</span> <span class="html prop-name">ng-attr-icon-empty=</span><span class="html prop-string">&quot;{{ enableReadonly ? 'fa-twitter' : 'fa-circle-o' }}&quot;</span> <span class="html prop-name"></span>ng-attr-icon-full=<span class="html prop-string">&quot;{{ enableReadonly ? 'fa-cog' : 'fa-twitter' }}&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 9-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example9" aria-expanded="false" aria-controls="example9"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 9</h3>
+                    <p>Change the class on hover using the attribute <code>icon-hover="classname"</code></p>
+                    <div ng-init="hoverClass = 'red'">
+                        <em>
+                            <input name="hover" type="radio" ng-model="hoverClass" value="red"> red
+                            <input name="hover" type="radio" ng-model="hoverClass" value="blue"> blue
+                        </em>
+                        <span class="tag tag-info">{{ hoverClass }}</span>
+                    </div>
+                    <input-stars
+                            ng-model="prop2"
+                            max="5"
+                            icon-hover="{{hoverClass}}"
+                    ></input-stars>
+                    <span class="tag tag-info">value: {{prop2}}</span>
+                    <div class="collapse" id="example9">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop2&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span> <span class="html prop-name">icon-hover=</span><span class="html prop-string">&quot;{{hoverClass}}&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+                <!--Example 10-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 example-element">
+                    <a class="view-code btn" data-toggle="collapse" data-target="#example10" aria-expanded="false" aria-controls="example10"><span data-toggle="tooltip" data-placement="bottom" title="View Code">&lt;code&gt;</span></a>
+                    <h3>Example 10</h3>
+                    <p>Adding a click event to the element it's easy, just add <code>on-star-click="functionHandler()"</code> and that's it. (Check the console)</p>
+                    <input-stars
+                            ng-model="prop3"
+                            max="5"
+                            on-star-click="clickEventHandler()"
+                    ></input-stars>
+                    <span class="tag tag-info">value: {{prop3}}</span>
+                    <div class="collapse" id="example10">
+                        <div class="card card-block">
+                            <pre><span class="html tag">&lt;input-stars</span> <span class="html prop-name">ng-model=</span><span class="html prop-string">&quot;prop3&quot;</span> <span class="html prop-name">max=</span><span class="html prop-string">&quot;5&quot;</span> <span class="html prop-name">on-star-click=</span><span class="html prop-string">&quot;clickEventHandler()&quot;</span><span class="html tag">&gt;&lt;/input-stars&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="angular-input-stars.js"></script>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+        <script type="text/javascript">
+
+            if (window.angular === undefined)
+                alert('Maybe you should run bower install first :]');
+
+            angular.module('app', ['angular-input-stars']);
+            angular.module('app').controller('AppCtrl', AppCtrl);
+
+
+            AppCtrl.$inject = ['$scope'];
+            function AppCtrl ($scope) {
+
+                $scope.clickHandler= function (prop) {
+                    console.log(prop);
+                };
+
+                $scope.clickEventHandler = function(){
+                  console.log("Input was clicked with " + $scope.prop3 + " stars");
+                };
+
+                var vm = this;
+
+                $scope.prop1  = 1;
+                $scope.prop2  = 2;
+                $scope.prop3  = 3;
+                $scope.prop4  = 4;
+                $scope.prop5  = 2;
+                $scope.prop6  = 3;
+                $scope.prop7  = 3;
+
+                $scope.maxDynamic = 3;
+
+            }
+
+        </script>
+    </body>
+</html>

@@ -4,13 +4,15 @@ angular.module('angular-input-stars', [])
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
-            '<li ng-touch="paintStars($index)" ng-mouseover="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
-            '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
+            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
+            '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)">{{ligatureIcon}}</i>' +
             '</li>' +
             '</ul>',
             require: 'ngModel',
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                max: '@',
+                onStarClick: '&'
             },
             link: link
         };
@@ -33,10 +35,15 @@ angular.module('angular-input-stars', [])
                 },
                 get iconHover() {
                     return attrs.iconHover || 'angular-input-stars-hover';
+                },
+                get ligature() {
+                    return attrs.ligature != undefined;
                 }
             };
 
-            scope.items = new Array(+attrs.max);
+            scope.$watch('max', function(){
+              scope.items = new Array(+attrs.max);
+            });
             scope.listClass = attrs.listClass || 'angular-input-stars';
 
             ngModelCtrl.$render = function () {
@@ -45,6 +52,7 @@ angular.module('angular-input-stars', [])
 
             scope.getClass = function (index) {
                 var icon = index >= scope.lastValue ? computed.iconBase + ' ' + computed.emptyIcon : computed.iconBase + ' ' + computed.fullIcon + ' active ';
+                scope.ligatureIcon = computed.ligature ? index >= scope.lastValue ? computed.emptyIcon : computed.fullIcon : "";
                 return computed.readonly ? icon + ' readonly' : icon;
             };
 
@@ -68,11 +76,17 @@ angular.module('angular-input-stars', [])
                         $star.addClass(computed.fullIcon);
                         $star.addClass('active');
                         $star.addClass(computed.iconHover);
+                        if (computed.ligature) {
+                          $star.html(computed.fullIcon);
+                        }
                     } else {
                         $star.removeClass(computed.fullIcon);
                         $star.removeClass('active');
                         $star.removeClass(computed.iconHover);
                         $star.addClass(computed.emptyIcon);
+                        if (computed.ligature) {
+                          $star.html(computed.emptyIcon);
+                        }
 
                     }
                 }
@@ -111,7 +125,7 @@ angular.module('angular-input-stars', [])
 
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
-                    scope.$eval(attrs.onStarClick);
+                    scope.onStarClick();
                 }
 
             };
