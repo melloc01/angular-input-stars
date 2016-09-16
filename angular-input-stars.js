@@ -9,9 +9,7 @@ angular.module('angular-input-stars', [])
             '</li>' +
             '</ul>',
             require: 'ngModel',
-            scope: {
-                ngModel: '='
-            },
+            scope: true,
             link: link
         };
 
@@ -104,7 +102,6 @@ angular.module('angular-input-stars', [])
                 }
 
                 scope.lastValue = newValue;
-
 
                 ngModelCtrl.$setViewValue(newValue);
                 ngModelCtrl.$render();
