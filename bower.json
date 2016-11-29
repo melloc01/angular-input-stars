@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "main": [
-    "angular-input-stars.js"
+    "angular-input-stars.js",
     "angular-input-stars.css"
   ],
   "dependencies": {
