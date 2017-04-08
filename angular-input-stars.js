@@ -1,5 +1,9 @@
 angular.module('angular-input-stars', [])
     .directive('inputStars', [function () {
+        function isFloat(n){
+            return Number(n) === n && n % 1 !== 0;
+        }
+        
         var directive = {
             restrict: 'EA',
             replace: true,
@@ -23,6 +27,9 @@ angular.module('angular-input-stars', [])
                 get fullIcon() {
                     return attrs.iconFull || 'fa-star';
                 },
+                get halfIcon() {
+                    return attrs.iconHalf || 'fa-star-half-o';
+                },
                 get emptyIcon() {
                     return attrs.iconEmpty || 'fa-star-o';
                 },
@@ -38,11 +45,26 @@ angular.module('angular-input-stars', [])
             scope.listClass = attrs.listClass || 'angular-input-stars';
 
             ngModelCtrl.$render = function () {
-                scope.lastValue = ngModelCtrl.$viewValue || 0;
+                if (isFloat(ngModelCtrl.$viewValue)) {
+                    scope.lastValue = (Math.round(ngModelCtrl.$viewValue * 2) / 2)
+                } else {
+                    scope.lastValue = ngModelCtrl.$viewValue || 0;
+                }
             };
 
             scope.getClass = function (index) {
-                var icon = index >= scope.lastValue ? computed.iconBase + ' ' + computed.emptyIcon : computed.iconBase + ' ' + computed.fullIcon + ' active ';
+                var icon;
+      
+                if (index >= scope.lastValue) {
+                    icon = computed.iconBase + ' ' + computed.emptyIcon;
+                } else {
+                    var isHalf = index + 0.5;
+                    if (isHalf === scope.lastValue) {
+                        icon = computed.iconBase + ' ' + computed.halfIcon + ' active ';
+                    } else {
+                        icon = computed.iconBase + ' ' + computed.fullIcon + ' active ';
+                    }
+                }
                 return computed.readonly ? icon + ' readonly' : icon;
             };
 
