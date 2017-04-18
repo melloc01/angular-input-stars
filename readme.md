@@ -69,6 +69,10 @@ Allow it to have half-icon painted, thanks to [@brunoksato](https://github.com/b
 ```html
 <input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" allow-half ></input-stars>
 ```
+Use ng-attr to conditionally set the **readonly** attribute
+```html
+	<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" ng-attr-readonly="{{YourCtrl.isDisabled ? 'true' : undefined}}" ></input-stars>
+```
 
 > The .css file is optional and it is a bootstrap for customizations.
 
