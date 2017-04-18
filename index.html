@@ -9,25 +9,58 @@
         <title>Angular Input Stars</title>
         <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="angular-input-stars.css">
+        <style>
+            body, html {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
 
+            body {
+                color: #333;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .container {
+                min-width: 600px;
+                text-align: center;
+            }
+            .fa-star {
+                transition: transform 0.35s ease-out, color 0s;
+            }
+            .fa-star.active {
+                /* 5 point stars, (360/5) = 72, passing through 3 points (72 * 2 = 144) */
+                transform: rotate(144deg) 
+            }
+            i {
+                font-size: 30px !important
+            }
+        </style>
     </head>
     <body >
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div ng-app="app" ng-controller="AppCtrl as App">
+        <div class="container" ng-app="app" ng-controller="AppCtrl as App">
 
-            <input-stars ng-model="prop1" on-star-click="clickHandler(prop1)" max="5"></input-stars> value: {{prop1}}
+            <code>allow-half: true</code> <input-stars ng-model="prop1" on-star-click="clickHandler(prop1)" max="5" allow-half ></input-stars> <strong>value: {{prop1}}</strong>
             <br>
-            <input-stars ng-model="prop2" max="5"></input-stars> value: {{prop2}}
-            <br>
-            <input-stars ng-model="App.prop3" max="5"></input-stars> value: {{App.prop3}}
-            <br>
-            <input-stars ng-model="App.prop4" max="5"></input-stars> value: {{App.prop4}}
-            <br>
-            <input-stars ng-model="App.prop5" max="5"></input-stars> value: {{App.prop5}}
 
-            <h3>Readonly</h3>
+            <code>allow-half: true</code> <input-stars ng-model="prop2" on-star-click="clickHandler(prop2)" max="5" allow-half ></input-stars> <strong>value: {{prop2}}</strong>
+            <br>
+
+            <code>allow-half: true</code> <input-stars ng-model="App.prop3" on-star-click="clickHandler(App.prop3)" max="5" allow-half ></input-stars> <strong>value: {{App.prop3}}</strong>
+            <br>
+
+            <code>allow-half: false</code> <input-stars ng-model="App.prop4" on-star-click="clickHandler(App.prop4)" max="5" ></input-stars> <strong>value: {{App.prop4}}</strong>
+            <br>
+
+            <code>allow-half: false</code> <input-stars ng-model="App.prop5" on-star-click="clickHandler(App.prop5)" max="5" ></input-stars> <strong>value: {{App.prop5}}</strong>
+            
+            <h3>Readonly - not allowing half</h3>
 
             <div ng-init="enableReadonly = true">
                 <em>
@@ -36,7 +69,7 @@
                 <pre>{{ enableReadonly }}</pre>
             </div>
 
-            <input-stars 
+            <code>allow-half: false</code>  <input-stars 
                 ng-model="prop1" 
                 max="5" 
                 ng-attr-readonly="{{ enableReadonly || false }}" 
@@ -46,18 +79,18 @@
 
             <br>
 
-            <input-stars ng-model="prop2" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{prop2}}
+            <code>allow-half: false</code>  <input-stars ng-model="prop2" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{prop2}}
             <br>
-            <input-stars ng-model="App.prop3" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop3}}
+            <code>allow-half: false</code>  <input-stars ng-model="App.prop3" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop3}}
             <br>
-            <input-stars ng-model="App.prop4" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop4}}
+            <code>allow-half: false</code>  <input-stars ng-model="App.prop4" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop4}}
             <br>
-            <input-stars ng-model="App.prop5" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop5}}
+            <code>allow-half: false</code>  <input-stars ng-model="App.prop5" max="5" ng-attr-readonly="{{ enableReadonly || false }}"></input-stars> value: {{App.prop5}}
 
 
         </div>
 
-        <script src="bower_components/angular/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
         <script type="text/javascript" src="angular-input-stars.js"></script>
 
         <script type="text/javascript">
