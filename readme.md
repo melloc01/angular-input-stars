@@ -58,18 +58,16 @@ Customize the **list class** to whatever you want
 <input-stars max="5" list-class="shiny-list" ng-model="YourCtrl.property"></input-stars>
 ```
 
-Make it readonly thanks to [@anjorinjnr](https://github.com/anjorinjnr)
+Make it readonly, thanks to [@anjorinjnr](https://github.com/anjorinjnr)
 ```html
 <input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly ></input-stars>
 <input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="true" ></input-stars>
 <input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="readonly" ></input-stars>
 ```
 
-You can make it readonly thanks to [@anjorinjnr](https://github.com/anjorinjnr)
+Allow it to have half-icon painted, thanks to [@brunoksato](https://github.com/brunoksato)
 ```html
-<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly ></input-stars>
-<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="true" ></input-stars>
-<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" readonly="readonly" ></input-stars>
+<input-stars max="10" list-class="shiny-list" ng-model="YourCtrl.property" allow-half ></input-stars>
 ```
 
 > The .css file is optional and it is a bootstrap for customizations.
