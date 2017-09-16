@@ -1,6 +1,6 @@
 {
     "name": "angular-input-stars",
-    "version": "1.7.1",
+    "version": "1.8.0",
     "description": "AngularJS directive for rating inputs",
 	"private": false,
     "homepage": "https://github.com/rcbytes/angular-input-stars",
@@ -17,7 +17,7 @@
     "license": "MIT",
     "main": "angular-input-stars.js",
     "dependencies": {
-        "angular": "1.4.x",
-        "font-awesome": "~4.2.0"
+        "angular": ">=1.4.0 <2.0",
+        "font-awesome": "^4.0"
     }
 }
