@@ -40,19 +40,19 @@
         <![endif]-->
         <div class="container" ng-app="app" ng-controller="AppCtrl as App">
 
-            <code>allow-half: true</code> <input-stars ng-model="prop1" on-star-click="clickHandler(prop1)" max="5" allow-half ></input-stars> <strong>value: {{prop1}}</strong>
+            <code>allow-half: true</code> <input-stars  ng-model="prop1" on-star-click="App.clickHandler(prop1)" max="5" allow-half ></input-stars> <strong>value: {{prop1}}</strong>
             <br>
 
-            <code>allow-half: true</code> <input-stars ng-model="prop2" on-star-click="clickHandler(prop2)" max="5" allow-half ></input-stars> <strong>value: {{prop2}}</strong>
+            <code>allow-half: true</code> <input-stars ng-model="prop2" on-star-click="App.clickHandler(prop2)" max="5" allow-half ></input-stars> <strong>value: {{prop2}}</strong>
             <br>
 
-            <code>allow-half: true</code> <input-stars ng-model="App.prop3" on-star-click="clickHandler(App.prop3)" max="5" allow-half ></input-stars> <strong>value: {{App.prop3}}</strong>
+            <code>allow-half: true</code> <input-stars ng-model="App.prop3" on-star-click="App.clickHandler(App.prop3)" max="5" allow-half ></input-stars> <strong>value: {{App.prop3}}</strong>
             <br>
 
-            <code>allow-half: false</code> <input-stars ng-model="App.prop4" on-star-click="clickHandler(App.prop4)" max="5" ></input-stars> <strong>value: {{App.prop4}}</strong>
+            <code>allow-half: false</code> <input-stars ng-model="App.prop4" on-star-click="App.clickHandler(App.prop4)" max="5" ></input-stars> <strong>value: {{App.prop4}}</strong>
             <br>
 
-            <code>allow-half: false</code> <input-stars ng-model="App.prop5" on-star-click="clickHandler(App.prop5)" max="5" ></input-stars> <strong>value: {{App.prop5}}</strong>
+            <code>allow-half: false</code> <input-stars ng-model="App.prop5" on-star-click="App.clickHandler(App.prop5)" max="5" ></input-stars> <strong>value: {{App.prop5}}</strong>
             
             <h3>Readonly - not allowing half</h3>
 
@@ -99,11 +99,12 @@
             AppCtrl.$inject = ['$scope'];
             function AppCtrl ($scope) {
 
-                $scope.clickHandler= function (prop) {
+                
+                var vm = this;
+                
+                vm.clickHandler= function (prop) {
                     console.log(prop);
                 };
-
-                var vm = this;
 
                 $scope.prop1  = 1;
                 $scope.prop2  = 2;
