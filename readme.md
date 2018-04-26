@@ -71,7 +71,7 @@ Allow it to have half-icon painted, thanks to [@brunoksato](https://github.com/b
 
 > The .css file is optional and it is a bootstrap for customizations.
 
-##Dependencies
+## Dependencies
 This directive uses [FontAwesome](http://fortawesome.github.io/Font-Awesome/) as fallback if you don't specify any icon class.
 
 ## License
