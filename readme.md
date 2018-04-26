@@ -2,7 +2,6 @@
 
 With this directive you can build rating inputs easily. 
 
-Look!  A [demo](http://lab.rafamello.com/angular-input-stars)!
 
 ## Installation via bower
 
