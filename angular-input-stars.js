@@ -8,13 +8,14 @@ angular.module('angular-input-stars', [])
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
-            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true, $event)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
+            '<li ng-touch="paintStars($index)" ng-mouseleave="unpaintStars($index, false)" ng-mousemove="paintStars($index, true, $event)" ng-repeat="item in items track by $index">' +
             '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
             '</ul>',
             require: 'ngModel',
             scope:{
-                bindModel:'=ngModel'
+                bindModel:'=ngModel',
+                hoverModel: '=?'
             },
             link: link
         };
@@ -75,6 +76,7 @@ angular.module('angular-input-stars', [])
 
             scope.unpaintStars = function ($index, hover) {
                 scope.paintStars(scope.lastValue - 1, hover);
+                scope.hoverModel = null;
             };
 
             scope.paintStars = function ($index, hover, $event) {
@@ -92,7 +94,15 @@ angular.module('angular-input-stars', [])
 
                     if ($index >= index) {
                         classesToRemove = [computed.emptyIcon, computed.halfIcon]
-                        classesToAdd = [computed.iconHover, computed.fullIcon, 'active']
+                        classesToAdd = [computed.iconHover, 'active']
+
+                        if (index == $index && $event && computed.allowHalf && isHoveringFirstHalf($event, $event.target)) {
+                            classesToAdd.push(computed.halfIcon);
+                        }
+                        else {
+                            classesToAdd.push(computed.fullIcon);
+
+                        }
                     } else {
                         classesToRemove = [computed.fullIcon, computed.iconHover, computed.halfIcon, 'active']
 
@@ -110,6 +120,15 @@ angular.module('angular-input-stars', [])
 
                 if (! hover) {
                     items.removeClass(computed.iconHover);
+                }
+
+
+                if( $event ) {
+                    if (computed.allowHalf && isHoveringFirstHalf($event, $event.target)) {
+                        scope.hoverModel = $index + 0.5;
+                    } else {
+                        scope.hoverModel = $index + 1;
+                    }
                 }
             };
 

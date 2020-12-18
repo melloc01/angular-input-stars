@@ -39,6 +39,19 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="container" ng-app="app" ng-controller="AppCtrl as App">
+            <h3>Hover Test:</h3>
+            Full Stars: <input-stars ng-model="App.test1" hover-model="App.hoverValue" max="5"></input-stars><br/>
+            value: {{App.test1}}<br/>
+            hover: {{App.hoverValue}}
+            <br/><br/>
+
+            Allow Half Stars: <input-stars ng-model="App.test2" hover-model="App.hoverValue2" max="5" allow-half></input-stars><br/>
+            value: {{App.test2}}<br/>
+            hover: {{App.hoverValue2}}
+            <br/><br/>
+
+            <hr/>
+
 
             <code>allow-half: true</code> <input-stars  ng-model="prop1" on-star-click="App.clickHandler(prop1)" max="5" allow-half ></input-stars> <strong>value: {{prop1}}</strong>
             <br>
